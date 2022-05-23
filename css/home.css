@@ -1,0 +1,26 @@
+.login, .signup{
+    display: block;
+    width: 45%;
+    text-align: center;
+    background-color: black;
+    color: #f5ac4c;
+    padding: 15px;
+}
+.login{
+    float: left;
+}
+.signup{
+    float: right;
+}
+.login input[type=text], .signup input[type=text]{
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+.login input[type=button], .signup input[type=button]{
+    border: none;
+    padding: 5px;
+    background-color: #f5ac4c;
+}
