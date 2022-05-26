@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/knightschess.css">
+    <link rel="stylesheet" href="../css/media.css">
+    <link rel="icon" href="../img/Knights%20Chess.png">
+    <script src="../js/media.js"></script>
+    <script src="../js/jQuery.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <img src="../img/Knights%20Chess-logos_transparent.png" class="logo" alt="Sorry, this image could not be loaded...">
+
+    <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+            <span></span>
+        </label>
+
+        <ul class="menu__box">
+            <li><a class="menu__item" href="home.html">Register Users</a></li>
+            <li><a class="menu__item" href="#">Manage Players</a></li>
+            <li><a class="menu__item" href="#">Manage Locations</a></li>
+            <li><a class="menu__item" href="#">Capture Match Results </a></li>
+            <li><a class="menu__item" href="media.html">Upload Media</a></li>
+            <li><a class="menu__item" href="#">Analytics</a></li>
+        </ul>
+    </div>
+
+    <form>
+        <h1>Add media to tournament</h1>
+        <input type="file" id="file" name="fileToUpload">
+        <div style="height: 20px"></div>
+        <label for="type">For</label><select name="type" id="type">
+            <option value="player">Player</option>
+            <option value="tournament">Tournament</option>
+        </select>
+        <div style="height: 20px"></div>
+        <label for="publisher_key">Publisher</label><input type="text" id="publisher_key" name="publisher">
+        <label for="name">Name</label><input type="text" id="name" name="name">
+        <label for="location_building">Building</label><input type="text" id="location_building" name="location_building">
+        <label for="location_street">Street</label><input type="text" id="location_street" name="location_street">
+        <label for="location_country">Country</label><input type="text" id="location_country" name="location_country">
+        <input type="button" value="Submit" name="Submit" onclick="media()">
+    </form>
+
+</div>
+</body>
+</html>
