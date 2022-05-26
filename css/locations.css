@@ -16,7 +16,7 @@ html{
 .sites_body{
     float: right;
 }
-.add_block{
+.add_block, .locations_list, .sites_list{
     text-align: left;
     border-style: groove;
     border-color: rgba(255, 255, 255, 0.211);
@@ -25,7 +25,7 @@ html{
     overflow: hidden;
 }
 .add_block > input{
-    width: 90%;
+    width: calc(100% - 40px);
     height: 5px;
     padding: 15px;
     margin: 5px 0 5px 5px;
@@ -37,5 +37,6 @@ html{
     margin-left: 10px;
 }
 .locations_list, .sites_list{
-
+    overflow: scroll;
+    height: 300px;
 }
