@@ -21,8 +21,10 @@ function createLocationAddressPair($building, $street, $country){
     return $location_id;
 }
 
+$files = explode(".", $_FILES["file"]["name"]);
+
 $target_dir = "assets/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$target_file = $target_dir . time() . basename($_FILES["file"]["name"]);;
 
 $publishers = dbQuery("SELECT id FROM publishers WHERE publisher_key = '" . $_POST["publisher"] . "'");
 if (sizeof($publishers) == 0){
@@ -90,19 +92,6 @@ if ($_POST["type"] == "tournament") {
 }
 
 //Add file to path
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-$check = getimagesize($_FILES["file"]["tmp_name"]);
-if($check == false) {
-    $returnMessage = [
-        "status" => "failed",
-        "timestamp" => time(),
-        "data" => ["message" => "ERROR: No image was chosen."]
-    ];
-
-    echo json_encode($returnMessage);
-    return;
-}
 
 move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
 
