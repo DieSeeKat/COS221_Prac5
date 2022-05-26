@@ -23,5 +23,5 @@ The dbQuery() function takes the SQL query as a parameter and returns an array o
 --knightschess.php--
 
 The knightschess.php file is where our api's will be sent to. 
-It uses the "type" perameter to choose what to do.
+It uses the "type" parameter to choose what to do.
 Add your own case under the main switch statement in knightschess.php to use another php file (that you will have to create) to add functionality to the api.
