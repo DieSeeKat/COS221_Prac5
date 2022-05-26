@@ -2,6 +2,17 @@
 
 include_once "config.php";
 
+if (!isset($_POST["name"])) {
+    $returnMessage = [
+        "status" => "failed",
+        "timestamp" => time(),
+        "data" => ["message" => "ERROR: No name is specified."]
+    ];
+
+    echo json_encode($returnMessage);
+    return;
+}
+
 function createLocationAddressPair($building, $street, $country){
     dbQuery("INSERT into locations (country_code) VALUES ('".$country."')");
     $locations = dbQuery("SELECT id FROM locations");
@@ -56,7 +67,7 @@ if ($_POST["type"] == "tournament"){
 
     $names = explode(" ", $_POST["name"]);
 
-    $persons = dbQuery("SELECT id FROM chess_player INNER JOIN persons on chess_player.personID = persons.id WHERE firstname = '".$names[0]."' and lastname = '".$names[1]."'");
+    $persons = dbQuery("SELECT persons.id FROM chess_player INNER JOIN persons on chess_player.personID = persons.id WHERE firstname = '".$names[0]."' and lastname = '".$names[1]."'");
     if (sizeof($persons) == 0){
         $returnMessage = [
             "status" => "failed",
@@ -80,17 +91,6 @@ if ($_POST["type"] == "tournament") {
 
 //Add file to path
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-if (!isset($_POST["tournament"])) {
-    $returnMessage = [
-        "status" => "failed",
-        "timestamp" => time(),
-        "data" => ["message" => "ERROR: No tournament is specified."]
-    ];
-
-    echo json_encode($returnMessage);
-    return;
-}
 
 $check = getimagesize($_FILES["file"]["tmp_name"]);
 if($check == false) {
