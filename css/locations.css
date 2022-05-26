@@ -1,0 +1,41 @@
+html{
+    min-width: 700px;
+}
+.locations_body, .sites_body{
+    display: block;
+    width: 45%;
+    text-align: center;
+    background-color: black;
+    color: #f5ac4c;
+    padding: 15px;
+    border-radius: 10px;
+}
+.locations_body{
+    float: left;
+}
+.sites_body{
+    float: right;
+}
+.add_block{
+    text-align: left;
+    border-style: groove;
+    border-color: rgba(255, 255, 255, 0.211);
+    border-radius: 5px;
+    border-width: 1px;
+    overflow: hidden;
+}
+.add_block > input{
+    width: 90%;
+    height: 5px;
+    padding: 15px;
+    margin: 5px 0 5px 5px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+}
+.add_block > label{
+    margin-left: 10px;
+}
+.locations_list, .sites_list{
+
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="../css/knightschess.css">
+    <link rel="stylesheet" href="../css/locations.css">
+    <link rel="icon" href="../img/Knights%20Chess.png">
+    <script src="../js/home.js"></script>
+    <script src="../js/jQuery.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <img src="../img/Knights%20Chess-logos_transparent.png" class="logo" alt="Sorry, this image could not be loaded...">
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
+            </label>
+
+            <ul class="menu__box">
+                <li><a class="menu__item" href="#">Register Users</a></li>
+                <li><a class="menu__item" href="#">Manage Players</a></li>
+                <li><a class="menu__item" href="locations.html">Manage Locations</a></li>
+                <li><a class="menu__item" href="#">Capture Match Results </a></li>
+                <li><a class="menu__item" href="media.html">Upload Media</a></li>
+                <li><a class="menu__item" href="#">Analytics</a></li>
+            </ul>
+        </div>
+
+        <div class="locations_body">
+            <h1>Locations: </h1>
+            <div class="add_block">
+                <h2>Add a new locations:</h2>
+                <label for="location_city">City</label><input type="text" id="location_city">
+            </br>
+                <label for="location_state">State</label><input type="text" id="location_state">
+            </br>
+                <label for="location_area">Area</label><input type="text" id="location_area">
+            </br>
+                <label for="location_country">Country</label><input type="text" id="location_country">
+            </br>
+                <label for="location_timezone">Timezone</label><input type="text" id="location_timezone">
+            </br>
+                <label for="location_latitude">Latitude</label><input type="text" id="location_latitude">
+            </br>
+                <label for="location_longitude">Longitude</label><input type="text" id="location_longitude">
+            </br>
+                <label for="location_country_code">Country Code</label><input type="text" id="location_country_code">
+            </div>
+        </div>
+        <div class="sites_body">
+            <h1 class="heading">Sites: </h1>
+            <div class="add_block">
+                <h2>Add a new site:</h2>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
