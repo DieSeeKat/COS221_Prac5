@@ -19,10 +19,10 @@ if (!isset($_POST["type"])){
 switch ($_POST["type"]){
     //Add cases below
     case "login":
-        echo login($_POST["id"], $_POST["key"]);
+        echo login($_POST["name"], $_POST["key"]);
         break;
     case "signup":
-        echo signup($_POST["id"], $_POST["key"]);
+        echo signup($_POST["name"], $_POST["key"]);
         break;
     default:
         $returnMessage = [

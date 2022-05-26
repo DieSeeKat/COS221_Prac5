@@ -5,6 +5,7 @@
     background-color: black;
     color: #f5ac4c;
     padding: 15px;
+    border-radius: 10px;
 }
 .login{
     float: left;
@@ -17,10 +18,12 @@
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
+    border-radius: 10px;
     background: #f1f1f1;
 }
 .login input[type=button], .signup input[type=button]{
     border: none;
     padding: 5px;
     background-color: #f5ac4c;
+    border-radius: 5px;
 }

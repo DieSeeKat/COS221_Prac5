@@ -1,7 +1,9 @@
 <?php
 
-function signup($id, $key){
-    $result = dbQuery("SELECT * FROM publisher WHERE id=" . $id . " AND key=" . $key);
+include_once "config.php";
+
+function signup($name, $key){
+    $result = dbQuery("SELECT * FROM publishers WHERE publisher_name='".$name."' AND publisher_key='".$key."'");
     if (sizeof($result) >= 1){
         $returnMessage = [
             "status" => "failed",
@@ -12,13 +14,13 @@ function signup($id, $key){
         return json_encode($returnMessage);
     }
 
-    $result = dbQuery("INSERT into publisher (id, key) VALUES(" . $id . " , " . $key . ")");
+    $result = dbQuery("INSERT into publishers (publisher_name, publisher_key) VALUES('" . $name . "' ,'" . $key . "')");
 
     if ($result){
         $returnMessage = [
             "status" => "success",
             "timestamp" => time(),
-            "data" => ["message" => "User created with id=" . $id . " and key=" . $key]
+            "data" => ["message" => "User created with id=" . $name . " and key=" . $key]
         ];
 
     }else {
