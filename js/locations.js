@@ -3,19 +3,45 @@ let sites = [];
 let session_key =  sessionStorage.getItem('key');
 let session_keyID = undefined;
 
-function getKeyID(key){
+function getKeyID(v_key){
     let response = JSON.parse(jQuery.ajax({
         url: "../php/knightschess.php",
         type: "POST",
         data: {
             type: "getKeyID",
-            key: session_key,
+            key: v_key,
         },
         async : false
     }).responseText);
 
     console.log(response[0].id);
     session_keyID = parseInt(response[0].id);
+}
+
+function isDuplicateLocation(v_city, v_state, v_area, v_country, v_timezone, v_latitude, v_longitude, v_country_code){
+    let to_return = false;
+    locations.forEach((element)=>{
+        if(element.city == v_city)
+            if(element.state == v_state)
+                if(element.area == v_area)
+                    if(element.country == v_country)
+                        if(element.timezone == v_timezone)
+                            if(element.latitude == v_latitude)
+                                if(element.longitude == v_longitude)
+                                    if(element.country_code == v_country_code)
+                                        to_return = true;
+    })
+    return to_return;
+}
+
+function isDuplicateSite(site_key, location_id){
+    let to_return = false;
+    sites.forEach((site)=>{
+        if(site.location_id == location_id)
+            if(site.site_key == site_key)
+                to_return = true;
+    })
+    return to_return;
 }
 
 function add_location(){
@@ -32,6 +58,15 @@ function add_location(){
         let v_longitude = document.getElementById('location_longitude').value;
         let v_country_code = document.getElementById('location_country_code').value;
 
+        if(v_city == "" || v_state == "" || v_area == "" || v_country == "" || v_timezone == "" || v_latitude == "" || v_longitude == "" || v_country_code == ""){
+            alert("Please fill in all field before adding this location");
+            return;
+        }
+
+        if(isDuplicateLocation(v_city, v_state, v_area, v_country, v_timezone, v_latitude, v_longitude, v_country_code)){
+            alert("This location already exists. At least one field must differ in order to be added.")
+            return;
+        }
 
         let response = JSON.parse(jQuery.ajax({
             url: "../php/knightschess.php",
@@ -62,7 +97,18 @@ function add_site(){
     else{
         let v_site_key = document.getElementById('site_site_key').value;
         let select = document.getElementById('location_select');
-
+        if(v_site_key == ""){
+            alert("Please specify a site-key in order to add this site.");
+            return;
+        }
+        if(isNaN(parseInt(select.value)) || select.value == ""){
+            alert("Please select a location before adding a site.");
+            return;
+        }
+        if(isDuplicateSite(v_site_key, select.value)){
+            alert("Duplicate site. Change the site key or location to add this site.");
+            return;
+        }
         let response = JSON.parse(jQuery.ajax({
             url: "../php/knightschess.php",
             type: "POST",
@@ -92,6 +138,10 @@ function clear_refill(){
 }
 
 function removeLocationFromDB(v_locationID){
+    if(hasSite(v_locationID)){
+        alert("There are a site/s that reference this location. Please remove them before trying to remove this location.");
+        return;
+    }
     let response = JSON.parse(jQuery.ajax({
         url: "../php/knightschess.php",
         type: "POST",
