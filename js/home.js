@@ -25,7 +25,7 @@ function login_form(){
 
 function login(key){
     sessionStorage.setItem("key", key);
-    window.location.href = "../html/media.html";
+    // window.location.href = "../html/media.html";
 }
 
 function signup_form(){
