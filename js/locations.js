@@ -44,6 +44,15 @@ function isDuplicateSite(site_key, location_id){
     return to_return;
 }
 
+function hasSite(v_location_id){
+    let to_return = false;
+    sites.forEach((site)=>{
+        if(site.location_id == v_location_id)
+            to_return = true;
+    })
+    return to_return;
+}
+
 function add_location(){
     if(isNaN(session_keyID)){
         alert("Please log in or sign up before adding a location")
@@ -133,13 +142,15 @@ function clear_refill(){
     locations_list.innerHTML = "";
     select.innerHTML="";
     sites_list.innerHTML="";
+    sites = [];
+    locations = [];
     list_locations();
     list_sites();
 }
 
 function removeLocationFromDB(v_locationID){
     if(hasSite(v_locationID)){
-        alert("There are a site/s that reference this location. Please remove them before trying to remove this location.");
+        alert("There are one or more sites that reference this location. Please remove them before trying to remove this location.");
         return;
     }
     let response = JSON.parse(jQuery.ajax({
