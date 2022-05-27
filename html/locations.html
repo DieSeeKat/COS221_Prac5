@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+        <head>
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="../css/knightschess.css">
@@ -33,31 +33,38 @@
         <div class="locations_body">
             <h1>Locations: </h1>
             <div class="add_block">
-                <h2>Add a new locations:</h2>
-                <label for="location_city">City</label><input type="text" id="location_city">
-            </br>
-                <label for="location_state">State</label><input type="text" id="location_state">
-            </br>
-                <label for="location_area">Area</label><input type="text" id="location_area">
-            </br>
-                <label for="location_country">Country</label><input type="text" id="location_country">
-            </br>
-                <label for="location_timezone">Timezone</label><input type="text" id="location_timezone">
-            </br>
-                <label for="location_latitude">Latitude</label><input type="text" id="location_latitude">
-            </br>
-                <label for="location_longitude">Longitude</label><input type="text" id="location_longitude">
-            </br>
-                <label for="location_country_code">Country Code</label><input type="text" id="location_country_code">
+                <h2 class="heading">Add a new location:</h2>
+                <form>
+                        <label for="location_city">City</label><input type="text" id="location_city">
+                    </br>
+                        <label for="location_state">State</label><input type="text" id="location_state">
+                    </br>
+                        <label for="location_area">Area</label><input type="text" id="location_area">
+                    </br>
+                        <label for="location_country">Country</label><input type="text" id="location_country">
+                    </br>
+                        <label for="location_timezone">Timezone</label><input type="text" id="location_timezone">
+                    </br>
+                        <label for="location_latitude">Latitude</label><input type="text" id="location_latitude">
+                    </br>
+                        <label for="location_longitude">Longitude</label><input type="text" id="location_longitude">
+                    </br>
+                        <label for="location_country_code">Country Code</label><input type="text" id="location_country_code">
+                        <input type="button" value="Add" onclick="add_location()" class="add_btn">
+                </form>
             </div>
         </div>
         <div class="sites_body">
             <h1 class="heading">Sites: </h1>
             <div class="add_block">
                 <h2>Add a new site:</h2>
+                <form>
+                        <label for="location_city">Site-key</label><input type="text" id="location_city">
+                </br>
+                <input type="button" value="Add" onclick="add_site()" class="add_btn">
+            </form>
             </div>
         </div>
-
     </div>
 </body>
 </html>
