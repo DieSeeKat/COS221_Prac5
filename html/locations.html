@@ -53,18 +53,26 @@
                         <input type="button" value="Add" onclick="add_location()" class="add_btn">
                 </form>
             </div>
+            <div id="locations_list">
+            </div>
         </div>
         <div class="sites_body">
             <h1 class="heading">Sites: </h1>
             <div class="add_block">
-                <h2>Add a new site:</h2>
+                <h2 class="heading">Add a new site:</h2>
                 <form>
+                        <label for="location_select">Location</label><select id="location_select"></select>
+                </br>
                         <label for="location_city">Site-key</label><input type="text" id="location_city">
                 </br>
                 <input type="button" value="Add" onclick="add_site()" class="add_btn">
             </form>
             </div>
+            <div id="sites_list">
+
+            </div>
         </div>
     </div>
+    <script src="../js/locations.js"></script>
 </body>
 </html>
