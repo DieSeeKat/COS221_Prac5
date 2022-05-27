@@ -25,6 +25,7 @@ function add_location(){
     else{
         let v_city = document.getElementById('location_city').value;
         let v_state = document.getElementById('location_state').value;
+        let v_area = document.getElementById('location_area').value;
         let v_country = document.getElementById('location_country').value;
         let v_timezone = document.getElementById('location_timezone').value;
         let v_latitude = document.getElementById('location_latitude').value;
@@ -39,6 +40,7 @@ function add_location(){
                 type: "insert_location",
                 city: v_city, 
                 state: v_state, 
+                area: v_area,
                 country: v_country,
                 timezone: v_timezone,
                 latitude: v_latitude,
@@ -58,7 +60,23 @@ function add_site(){
         alert("Please log in or sign up before adding a site")
     }
     else{
-        alert("New site has been added");
+        let v_site_key = document.getElementById('site_site_key').value;
+        let select = document.getElementById('location_select');
+
+        let response = JSON.parse(jQuery.ajax({
+            url: "../php/knightschess.php",
+            type: "POST",
+            data: {
+                type: "insert_site",
+                site_key: v_site_key,
+                publisher_id: session_keyID,
+                location_id: select.value,
+            },
+            async : false
+        }).responseText);
+
+        console.log(response);
+        clear_refill();
     }
 }
 
@@ -73,25 +91,44 @@ function clear_refill(){
     list_sites();
 }
 
-function removeFromDB(v_city, v_state, v_country, v_timezone, v_latitude, v_longitude, v_country_code){
+function removeLocationFromDB(v_locationID){
     let response = JSON.parse(jQuery.ajax({
         url: "../php/knightschess.php",
         type: "POST",
         data: {
             type: "remove_location",
-            city: v_city, 
-            state: v_state, 
-            country: v_country,
-            timezone: v_timezone,
-            latitude: v_latitude,
-            longitude: v_longitude,
-            country_code: v_country_code,
+            location_id: v_locationID,
         },
         async : false
     }).responseText);
 
     console.log(response);
     clear_refill();
+}
+
+function removeSiteFromDB(v_siteID){
+    let response = JSON.parse(jQuery.ajax({
+        url: "../php/knightschess.php",
+        type: "POST",
+        data: {
+            type: "remove_site",
+            site_id: v_siteID,
+        },
+        async : false
+    }).responseText);
+
+    console.log(response);
+    clear_refill();
+}
+
+function getLocation(id){
+    let myobj = undefined;
+    locations.forEach( (element) => {
+        if(element.id == id){
+            myobj = element;
+        }
+    })
+    return myobj;
 }
 
 function list_locations(){
@@ -118,6 +155,8 @@ function list_locations(){
         paragraph.innerHTML+=', ';
         paragraph.innerHTML+=element.state;
         paragraph.innerHTML+=', ';
+        paragraph.innerHTML+=element.area;
+        paragraph.innerHTML+=', ';
         paragraph.innerHTML+=element.country;
         paragraph.innerHTML+=', ';
         paragraph.innerHTML+=element.timezone;
@@ -128,7 +167,7 @@ function list_locations(){
         paragraph.innerHTML+=', ';
         paragraph.innerHTML+=element.country_code;
         button.onclick = () =>{
-            removeFromDB(element.city, element.state, element.country, element.timezone, element.latitude, element.longitude, element.country_code);
+            removeLocationFromDB(element.id);
         };
         button.classList.add("delete_button");
         button.textContent="X";
@@ -161,20 +200,42 @@ function list_sites(){
 
     //console.log(response);
 
+    let locations_list = document.getElementById("sites_list");
     response.forEach(element => {
         sites.push(element);
         let newdiv = document.createElement('div');
         let button = document.createElement('button');
-        button.textContent = i++;
+        let paragraph = document.createElement('p');
+
+        v_location = getLocation(element.location_id);
+        console.log(v_location);
+        paragraph.classList.add("list_paragraph");
+		paragraph.innerHTML+=element.site_key;
+        paragraph.innerHTML+=': ';
+        paragraph.innerHTML+=v_location.country;
+        paragraph.innerHTML+=', ';
+        paragraph.innerHTML+=v_location.state;
+        paragraph.innerHTML+=', ';
+        paragraph.innerHTML+=v_location.city;
+        paragraph.innerHTML+=', ';
+        paragraph.innerHTML+=v_location.area;
+
         button.onclick = () =>{
-            alert(button.textContent);
+            removeSiteFromDB(element.id);
         };
-        locations_list.appendChild(button);
+        button.classList.add("delete_button");
+        button.textContent="X";
+
+        newdiv.classList.add("list_container");
+        newdiv.appendChild(button);
+        newdiv.appendChild(paragraph);
+        newdiv.appendChild(document.createElement('br'));
+  
+        locations_list.appendChild(newdiv);
     });
 }
 
 getKeyID(session_key);
 list_locations();
 list_sites();
-console.log(locations);
-console.log(sites);
+// console.log(sites);
