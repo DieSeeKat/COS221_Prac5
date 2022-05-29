@@ -1,0 +1,42 @@
+h1 {
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 200%;
+}
+
+form {
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+    font-size: 120%;
+}
+
+input[type=text] {
+    width: 50%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+select {
+    width: 50%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 8px 32px;
+    text-decoration: none;
+    margin: 6px 3px;
+    cursor: pointer;
+}
