@@ -45,6 +45,15 @@ switch ($_POST["type"]){
     case "remove_site":
         echo json_encode(dbQuery("DELETE FROM sites WHERE id=".$_POST['site_id']));
         break;
+     case "players_list":
+        echo json_encode(dbQuery("SELECT * FROM chess_player"));
+            break;
+    case "insert_site":
+        echo json_encode(dbQuery("INSERT INTO chess_player (firstname, lastname, title, country, rating) VALUES ('".$_POST['firstname']."', ".$_POST['lastname'].", ".$_POST['title'].", ".$_POST['country'].", ".$_POST['rating'].")"));
+            break;
+    case "remove_site":
+        echo json_encode(dbQuery("DELETE FROM chess_player WHERE id=".$_POST['id']));
+            break;    
     default:
         $returnMessage = [
             "status" => "failed",
