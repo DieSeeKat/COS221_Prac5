@@ -94,11 +94,22 @@ function mostCommonOpenings():array{
 
 }
 
+function openings():array{
+    return dbQuery("SELECT * "."
+            FROM chess_opening
+            ORDER BY openingName ASC");
+}
+
 
 function createTable($array, $title){
+    ?>
+<form>
+    <?php
     if (count($array) > 0):
         echo "<h2>".$title."</h2>";
         ?>
+
+
 <table>
   <thead>
     <tr>
@@ -113,9 +124,12 @@ function createTable($array, $title){
 <?php endforeach; ?>
   </tbody>
 </table>
-
+</form>
+    <br>
 <?php endif;
 }
+
+
 
 $playersRanked = playersRanked();
 $playersAbleToJoinTournament = playersAbleToJoinTournament();
@@ -123,6 +137,7 @@ $playerOpenings = playerOpenings();
 $openingUsedInMatch = openingUsedInMatch();
 $MatchAnalysis = MatchAnalysis();
 $mostCommonOpenings = mostCommonOpenings();
+$openings = openings();
 
 
 createTable($playersRanked, "Players Ranked");
@@ -136,5 +151,7 @@ createTable($openingUsedInMatch, "Which openings were used in which matches");
 createTable($mostCommonOpenings, "Openings and how often they were used");
 
 createTable($MatchAnalysis, "Deeper analysis of matches");
+
+createTable($openings, "Recorded Openings Table");
 
 
