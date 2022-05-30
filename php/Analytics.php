@@ -29,10 +29,10 @@
         <?php include_once "config.php"?>
 
     </div>
-    <form>
+
         <?php include_once "statistics.php" ?>
 
-    </form>
+
 
 
 
