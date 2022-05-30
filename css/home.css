@@ -1,3 +1,6 @@
+html{
+    min-width: 700px;
+}
 .login, .signup{
     display: block;
     width: 45%;
