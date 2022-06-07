@@ -35,20 +35,20 @@ Use any php server.
 or LAMP stack on Linux.
 
 ## **Using the website**
-### [Register Users](http://localhost.com/html/home.html)
+### [Register Users](http://localhost/html/home.html)
 Here you can register a user, or log in if one has already been created.
 
-### [Manage Players](http://localhost.com/html/players.html)
+### [Manage Players](http://localhost/html/players.html)
 Add new chess players here.
 
-### [Manage Locations](http://localhost.com/html/locations.html)
+### [Manage Locations](http://localhost/html/locations.html)
 Add or remove Locations and Sites where chess events can be held
 
-### [Capture Match Results](http://localhost.com/html/capturescores.html)
+### [Capture Match Results](http://localhost/html/capturescores.html)
 Capture results for tournaments that have already been played.
 
-### [Upload Media](http://localhost.com/html/media.html)
+### [Upload Media](http://localhost/html/media.html)
 Add media for chess matches here. These will be stored on the server.
 
-### [Statistics](http://localhost.com/php/statistics.php)
+### [Statistics](http://localhost/php/statistics.php)
 Insightful statistics regarding all chess matches that have been played.
