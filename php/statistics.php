@@ -9,18 +9,41 @@ function playersRanked(): array
         ORDER BY rating DESC");
 }
 
+function playersPerTournament():array
+{
+    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
+        ct.id AS tournamentID
+        FROM chess_player AS cp
+         INNER JOIN chess_tournament_participation AS ctp
+                    ON cp.id=ctp.playerID
+         INNER JOIN chess_tournament AS ct
+                    ON ctp.tournamentID=ct.id
+        ORDER BY cp.lastname ASC
+    ");
+
+}
 
 function playersAbleToJoinTournament():array
 {
-    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating, " . "
-        ct.id AS tournamentID 
-        FROM chess_player AS cp 
-        INNER JOIN chess_tournament_participation AS ctp 
-        ON cp.id=ctp.playerID 
-        INNER JOIN chess_tournament AS ct 
-        ON ctp.tournamentID=ct.id 
-        WHERE (cp.rating<ct.ratingUpperLimit) AND (cp.rating>ct.ratingLowerLimit) 
-        ORDER BY cp.lastname ASC");
+
+
+    return dbQuery("
+    SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
+     (SELECT id FROM chess_tournament
+         WHERE (cp.rating<ratingUpperLimit)
+           AND (cp.rating>ratingLowerLimit)
+     ) AS tournamentID
+    FROM chess_player AS cp
+    WHERE (rating <
+           (SELECT  ratingUpperLimit
+               FROM chess_tournament
+           )
+      ) AND ( rating >
+           (SELECT  ratingLowerLimit
+               FROM chess_tournament
+           )
+      )
+    ORDER BY cp.rating DESC  ");
 }
 
 
@@ -132,7 +155,9 @@ function createTable($array, $title){
 
 createTable(playersRanked(), "Players Ranked");
 
-createTable(playersAbleToJoinTournament(), "Players able to join specific tournaments");
+createTable(playersPerTournament(), "Players playing in which tournaments");
+
+createTable(playersAbleToJoinTournament(), "Players able to join specified tournaments");
 
 createTable(playerOpenings(), "Which openings do players prefer");
 
