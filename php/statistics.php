@@ -78,19 +78,17 @@ function openingUsedInMatch():array
 
 function MatchAnalysis():array
 {
-    return dbQuery("SELECT cm.id, cm.type, "."
-       (SELECT firstname
+    return dbQuery("SELECT cm.id, cm.type,
+    (SELECT firstname
         FROM chess_player AS cp
-        INNER JOIN chess_match AS cm
-        on cp.id = cm.whitePlayerID) AS whitePlayer,
-       (SELECT firstname
-        FROM chess_player AS cp
-        INNER JOIN chess_match AS cm
-        on cp.id = cm.blackPlayerID) AS blackPlayer, 
-       cm.victoryStatus, 
+        WHERE id = whitePlayerID) AS whitePlayer,
+    (SELECT firstname
+     FROM chess_player AS cp
+     WHERE id = blackPlayerID) AS blackPlayer,
+       cm.victoryStatus,
        cm.victoryReason,
        cm.gameTime
-        FROM chess_match AS cm");
+FROM chess_match AS cm");
 }
 
 
