@@ -2,11 +2,12 @@ form{
     margin: auto;
     text-align: center;
     display: block;
-    width: 45%;
+    width: 65%;
     background-color: black;
     color: #f5ac4c;
     padding: 15px;
     border-radius: 10px;
+
 }
 input[type=text]{
     display: block;
