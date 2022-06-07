@@ -38,7 +38,7 @@ if (sizeof($publishers) == 0){
 }
 $publisher_id = $publishers[0]["id"];
 
-$locations = dbQuery("SELECT locations.id FROM locations INNER JOIN addresses a on locations.id = a.location_id WHERE building='".$_POST["building"]."' AND street='".$_POST["street"]."' AND country='".$_POST["country"]."'");
+$locations = dbQuery("SELECT locations.id FROM locations INNER JOIN addresses a on locations.id = a.location_id WHERE building='".$_POST["building"]."' AND street='".$_POST["street"]."' AND a.country='".$_POST["country"]."'");
 $location_id = 0;
 if (sizeof($locations) == 0){
     $location_id = createLocationAddressPair($_POST["building"], $_POST["street"], $_POST["country"]);
@@ -101,11 +101,7 @@ if ($_POST["type"] == "tournament") {
     dbQuery("INSERT into persons_media (person_id, media_id) VALUES (" . $type . "," . $media_id . ")");
 }
 
-//Add file to path
-
 move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-
-//Return
 
 $returnMessage = [
     "status" => "success",
