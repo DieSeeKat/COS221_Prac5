@@ -27,23 +27,28 @@ function playersAbleToJoinTournament():array
 {
 
 
-    return dbQuery("
-    SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
+    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
      (SELECT id FROM chess_tournament
-         WHERE (cp.rating<=ratingUpperLimit)
-           AND (cp.rating>=ratingLowerLimit)
-     ) AS tournamentID
-    FROM chess_player AS cp
-    WHERE (rating <= ANY
+         WHERE (cp.rating< ratingUpperLimit)
+           AND (cp.rating>ratingLowerLimit)
+     ) AS tournamentID,
+       (SELECT ratingUpperLimit FROM chess_tournament
+        WHERE (cp.rating< ratingUpperLimit)
+          AND (cp.rating>ratingLowerLimit)) AS UpperLimit,
+       (SELECT ratingLowerLimit FROM chess_tournament
+        WHERE (cp.rating< ratingUpperLimit)
+          AND (cp.rating>ratingLowerLimit)) AS LowerLimit
+FROM chess_player AS cp
+WHERE (rating < ANY
            (SELECT  ratingUpperLimit
                FROM chess_tournament
            )
-      ) AND ( rating >= ANY
+      ) AND ( rating > ANY
            (SELECT  ratingLowerLimit
                FROM chess_tournament
            )
       )
-    ORDER BY cp.rating DESC  ");
+ORDER BY cp.rating DESC");
 }
 
 
