@@ -69,6 +69,16 @@ if ($_POST["type"] == "tournament"){
 
     $names = explode(" ", $_POST["name"]);
 
+    if (sizeof($names) <= 1){
+        $returnMessage = [
+            "status" => "failed",
+            "timestamp" => time(),
+            "data" => ["message" => "ERROR: No such player exists."]
+        ];
+
+        echo json_encode($returnMessage);
+    }
+
     $persons = dbQuery("SELECT persons.id FROM chess_player INNER JOIN persons on chess_player.personID = persons.id WHERE firstname = '".$names[0]."' and lastname = '".$names[1]."'");
     if (sizeof($persons) == 0){
         $returnMessage = [
