@@ -23,6 +23,7 @@ function login_form(){
 
     if (JSON.parse(requestReturn).status === "success"){
         login(login_key);
+        alert(JSON.parse(requestReturn).data.message);
     }else {
         alert(JSON.parse(requestReturn).data.message);
     }
