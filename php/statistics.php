@@ -26,24 +26,23 @@ function playersPerTournament():array
 function playersAbleToJoinTournament():array
 {
 
-
     return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
      (SELECT id FROM chess_tournament
-         WHERE (cp.rating< ratingUpperLimit)
-           AND (cp.rating>ratingLowerLimit)
+         WHERE (cp.rating<= ratingUpperLimit)
+           AND (cp.rating>=ratingLowerLimit)
      ) AS tournamentID,
        (SELECT ratingUpperLimit FROM chess_tournament
-        WHERE (cp.rating< ratingUpperLimit)
-          AND (cp.rating>ratingLowerLimit)) AS UpperLimit,
+        WHERE (cp.rating<= ratingUpperLimit)
+          AND (cp.rating>=ratingLowerLimit)) AS UpperLimit,
        (SELECT ratingLowerLimit FROM chess_tournament
-        WHERE (cp.rating< ratingUpperLimit)
-          AND (cp.rating>ratingLowerLimit)) AS LowerLimit
+        WHERE (cp.rating<= ratingUpperLimit)
+          AND (cp.rating>=ratingLowerLimit)) AS LowerLimit
 FROM chess_player AS cp
-WHERE (rating < ANY
+WHERE (rating <= ANY
            (SELECT  ratingUpperLimit
                FROM chess_tournament
            )
-      ) AND ( rating > ANY
+      ) AND ( rating >= ANY
            (SELECT  ratingLowerLimit
                FROM chess_tournament
            )
@@ -133,23 +132,25 @@ function createTable($array, $title){
     ?>
 <form>
     <?php
-    if (count($array) > 0):
+        if (count($array) > 0):
         echo "<h2>".$title."</h2>";
-        ?>
+    ?>
 
 
 <table>
   <thead>
     <tr>
-      <th><?php echo implode('</th><th>', array_keys(current($array))); ?></th>
+      <th>
+          <?php echo implode('</th><th>', array_keys(current($array))); ?>
+      </th>
     </tr>
   </thead>
   <tbody>
-<?php foreach ($array as $row): array_map('htmlentities', $row); ?>
+    <?php foreach ($array as $row): array_map('htmlentities', $row); ?>
     <tr>
       <td><?php echo implode('</td><td>', $row); ?></td>
     </tr>
-<?php endforeach; ?>
+    <?php endforeach; ?>
   </tbody>
 </table>
 </form>
