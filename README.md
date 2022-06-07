@@ -34,7 +34,6 @@ Add your own case under the main switch statement in knightschess.php to use ano
 Use any php server.
   - [XAMPP](https://www.apachefriends.org/index.html)
   - [MAMP](https://www.mamp.info/)
-or LAMP stack on Linux.
 
 ## **Using the website**
 ### [Register Users](http://localhost/html/home.html)
