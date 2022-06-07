@@ -34,11 +34,11 @@ function playersAbleToJoinTournament():array
            AND (cp.rating>=ratingLowerLimit)
      ) AS tournamentID
     FROM chess_player AS cp
-    WHERE (rating <=
+    WHERE (rating <= ANY
            (SELECT  ratingUpperLimit
                FROM chess_tournament
            )
-      ) AND ( rating >=
+      ) AND ( rating >= ANY
            (SELECT  ratingLowerLimit
                FROM chess_tournament
            )
