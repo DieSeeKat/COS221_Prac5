@@ -269,7 +269,6 @@ function list_sites(){
         let paragraph = document.createElement('p');
 
         v_location = getLocation(element.location_id);
-        console.log(v_location);
         paragraph.classList.add("list_paragraph");
 		paragraph.innerHTML+=element.site_key;
         paragraph.innerHTML+=': ';
@@ -296,7 +295,14 @@ function list_sites(){
     });
 }
 
-getKeyID(session_key);
-list_locations();
-list_sites();
+if(!(session_key == null)){
+    getKeyID(session_key);
+    list_locations();
+    list_sites();
+}
+else{
+    alert("Please log in to continue");
+    location = "home.html";
+}
+
 // console.log(sites);

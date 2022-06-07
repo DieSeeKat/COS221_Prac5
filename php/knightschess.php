@@ -45,15 +45,19 @@ switch ($_POST["type"]){
     case "remove_site":
         echo json_encode(dbQuery("DELETE FROM sites WHERE id=".$_POST['site_id']));
         break;
-     case "players_list":
+    case "players_list":
         echo json_encode(dbQuery("SELECT * FROM chess_player"));
-            break;
-    case "insert_site":
-        echo json_encode(dbQuery("INSERT INTO chess_player (firstname, lastname, title, country, rating) VALUES ('".$_POST['firstname']."', ".$_POST['lastname'].", ".$_POST['title'].", ".$_POST['country'].", ".$_POST['rating'].")"));
-            break;
-    case "remove_site":
-        echo json_encode(dbQuery("DELETE FROM chess_player WHERE id=".$_POST['id']));
-            break;    
+            break; 
+    case "player_add":
+        $var1 = json_encode(dbQuery("INSERT INTO persons (id, person_key, publisher_id, gender) VALUES (".$_POST['id'].", '".$_POST['name']." ".$_POST['surname']."' ,".$_POST['pub_id'].", '".$_POST['sex']."')"));
+        $var2 = json_encode(dbQuery("INSERT INTO chess_player (id, firstname, lastname, title, country, rating, personID) VALUES (".$_POST['id'].", '".$_POST['name']."', '".$_POST['surname']."', '".$_POST['title']."', '".$_POST['country']."', '".$_POST['rating']."', ".$_POST['id'].")"));
+        echo true;
+        break;
+    case "player_remove":
+        $var1 = json_encode(dbQuery("DELETE FROM chess_player WHERE id=".$_POST['id']));
+        $var2 = json_encode(dbQuery("DELETE FROM persons WHERE id=".$_POST['id']));
+        echo true;
+        break;
     default:
         $returnMessage = [
             "status" => "failed",
