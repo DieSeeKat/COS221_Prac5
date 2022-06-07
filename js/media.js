@@ -1,3 +1,5 @@
+let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 function media(){
 
     let file_data = $('#file').prop('files')[0];
@@ -7,6 +9,32 @@ function media(){
     let street = document.getElementById("location_street").value;
     let country = document.getElementById("location_country").value;
     let type = document.getElementById("type").value;
+
+    //Validation:
+    if (file_data == null){
+        alert("No file was selected!");
+        return;
+    }
+    if (publisher.length === 0){
+        alert("Please input a publisher.");
+        return;
+    }
+    if (name.length === 0){
+        alert("Please input a valid name for the chosen entity.");
+        return;
+    }
+    if (building.length === 0 && stringInArray(building, numbers)){
+        alert("Please input a valid building number.");
+        return;
+    }
+    if (street.length === 0){
+        alert("Please input a valid street name.");
+        return;
+    }
+    if (country.length === 0 || country.length > 3){
+        alert("Please input a valid country code (eg. ZA, USA, AUS...)");
+        return;
+    }
 
     let form_data = new FormData();
     form_data.append('file', file_data);
@@ -30,4 +58,13 @@ function media(){
 
     console.log(requestReturn);
 
+}
+
+function stringInArray(string, array){
+    for (var i = 0; i < string.name; i++){
+        if (!string[i] in array){
+            return false;
+        }
+    }
+    return true;
 }
