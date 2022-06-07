@@ -25,3 +25,29 @@ The dbQuery() function takes the SQL query as a parameter and returns an array o
 The knightschess.php file is where our api's will be sent to. 
 It uses the "type" parameter to choose what to do.
 Add your own case under the main switch statement in knightschess.php to use another php file (that you will have to create) to add functionality to the api.
+
+## Hosting
+
+Use any php server.
+  - XAMPP or WAMP (For Windows)
+  - MAMP (For Mac OS)
+or LAMP stack on Linux.
+
+## Using the website
+### Register Users
+Here you can register a user, or log in if one has already been created.
+
+### Manage Players
+Add new chess players here.
+
+### Manage Locations
+Add or remove Locations and Sites where chess events can be held
+
+### Capture Match Results
+Capture results for tournaments that have already been played.
+
+### Upload Media
+Add media for chess matches here. These will be stored on the server.
+
+### Statistics
+Insightful statistics regarding all chess matches that have been played.
