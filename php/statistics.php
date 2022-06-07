@@ -30,15 +30,15 @@ function playersAbleToJoinTournament():array
     return dbQuery("
     SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
      (SELECT id FROM chess_tournament
-         WHERE (cp.rating<ratingUpperLimit)
-           AND (cp.rating>ratingLowerLimit)
+         WHERE (cp.rating<=ratingUpperLimit)
+           AND (cp.rating>=ratingLowerLimit)
      ) AS tournamentID
     FROM chess_player AS cp
-    WHERE (rating <
+    WHERE (rating <=
            (SELECT  ratingUpperLimit
                FROM chess_tournament
            )
-      ) AND ( rating >
+      ) AND ( rating >=
            (SELECT  ratingLowerLimit
                FROM chess_tournament
            )
