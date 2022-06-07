@@ -30,25 +30,25 @@ Add your own case under the main switch statement in knightschess.php to use ano
 ## **Hosting**
 
 Use any php server.
-  - [XAMPP](https://www.apachefriends.org/index.html) (Windows, Linux and OS X)
-  - MAMP (For Mac OS)
+  - [XAMPP](https://www.apachefriends.org/index.html)
+  - [MAMP](https://www.mamp.info/)
 or LAMP stack on Linux.
 
 ## **Using the website**
-### Register Users
+### [Register Users](localhost.com/html/home.html)
 Here you can register a user, or log in if one has already been created.
 
-### Manage Players
+### [Manage Players](localhost.com/html/players.html)
 Add new chess players here.
 
-### Manage Locations
+### [Manage Locations](localhost.com/html/locations.html)
 Add or remove Locations and Sites where chess events can be held
 
-### Capture Match Results
+### [Capture Match Results](localhost.com/html/capturescores.html)
 Capture results for tournaments that have already been played.
 
-### Upload Media
+### [Upload Media](localhost.com/html/media.html)
 Add media for chess matches here. These will be stored on the server.
 
-### Statistics
+### [Statistics](localhost.com/php/statistics.php)
 Insightful statistics regarding all chess matches that have been played.
