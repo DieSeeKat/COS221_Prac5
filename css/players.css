@@ -4,7 +4,52 @@ html{
 .container{
     padding-bottom: 25px;
 }
+.locations_body, .sites_body{
+    margin: auto;
+    text-align: center;
+    display: block;
+    width: 45%;
+    background-color: black;
+    color: #f5ac4c;
+    padding: 15px;
+    border-radius: 10px;
+}
+.add_block, #locations_list, #sites_list{
+    text-align: left;
+    border-style: groove;
+    border-color: rgba(255, 255, 255, 0.211);
+    border-radius: 5px;
+    border-width: 1px;
+    overflow: hidden;
+}
+.add_block > form > input[type=text]{
+    width: calc(100% - 40px);
+    height: 5px;
+    padding: 15px;
+    margin: 5px 0 5px 5px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+}
+.add_block > form > label{
+    margin-left: 10px;
+}
 
+#sites_list, #locations_list{
+    padding: 10px;
+} 
+
+#locations_list{
+    text-align: left;
+    overflow-y: scroll;
+    max-height: 300px;
+    display: block;
+}
+#sites_list{
+    text-align: left;
+    overflow-y: scroll;
+    max-height: 741px;
+}
 .add_btn{
     --btn_width: 50px;
     width: var(--btn_width);
@@ -15,43 +60,30 @@ html{
     border-radius: 5px;
     margin-left: calc(50% - 0.5 * var(--btn_width));
 }
-label {
-    font-size: 120%;
+.heading{
+    margin-left: 5px;
 }
-form{
-    margin: auto;
-    text-align: center;
-    display: block;
-    width: 45%;
-    background-color: black;
-    color: #f5ac4c;
-    padding: 15px;
-    border-radius: 10px;
+.delete_button{
+    color: red;
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    float: right;
+    transition: 0.15s;
 }
-input[type=text]{
-    display: block;
-    width: 90%;
-    padding: 15px;
-    margin: 5px auto 22px;
-    border: none;
-    border-radius: 10px;
-    background: #f1f1f1;
+.delete_button:hover{
+    color: white;
+    background-color: red;
 }
-
-select{
-    margin: auto;
-    display: block;
-    border: none;
-    padding: 5px;
-    background-color: #171717;
-    border-radius: 5px;
-    color: #f1f1f1;
+.list_paragraph{
+    float: left;
 }
-input[type=button]{
-    margin: auto;
-    display: block;
-    border: none;
-    padding: 5px;
-    background-color: #f5ac4c;
+.list_container{
+    width: calc(100% - 10px);
+    display: inline-block;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(255, 255, 255, 0.211);
+    border-bottom-width: 1px;
     border-radius: 5px;
 }

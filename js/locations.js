@@ -302,6 +302,7 @@ if(!(session_key == null)){
 }
 else{
     alert("Please log in to continue");
+    location = "home.html";
 }
 
 // console.log(sites);
