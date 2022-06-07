@@ -12,6 +12,7 @@ The json file should have the following format:
   "password" : "",
   "dbname" : "sports_db"
 } `
+
 Please do not include this file when pushing to the repository.
 
 ### knightschess.css
