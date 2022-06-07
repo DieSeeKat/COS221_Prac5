@@ -1,6 +1,6 @@
-# COS221_Prac5
+# **COS221_Prac5**
 
-## Getting Started
+## **Getting Started**
 ### config.json
 
 To use this program, please create a json file in the same directory as the js, php etc. directories.
@@ -27,14 +27,14 @@ The knightschess.php file is where our api's will be sent to.
 It uses the "type" parameter to choose what to do.
 Add your own case under the main switch statement in knightschess.php to use another php file (that you will have to create) to add functionality to the api.
 
-## Hosting
+## **Hosting**
 
 Use any php server.
   - XAMPP or WAMP (For Windows)
   - MAMP (For Mac OS)
 or LAMP stack on Linux.
 
-## Using the website
+## **Using the website**
 ### Register Users
 Here you can register a user, or log in if one has already been created.
 
