@@ -1,12 +1,4 @@
-h1 {
-    text-align: center;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 200%;
-}
-
-form {
+form{
     margin: auto;
     text-align: center;
     display: block;
@@ -16,11 +8,6 @@ form {
     padding: 15px;
     border-radius: 10px;
 }
-
-label {
-    font-size: 120%;
-}
-
 input[type=text]{
     display: block;
     width: 90%;
@@ -30,8 +17,15 @@ input[type=text]{
     border-radius: 10px;
     background: #f1f1f1;
 }
-
-select {
+input[type=button]{
+    margin: auto;
+    display: block;
+    border: none;
+    padding: 5px;
+    background-color: #f5ac4c;
+    border-radius: 5px;
+}
+input[type=file]{
     margin: auto;
     display: block;
     border: none;
@@ -40,12 +34,12 @@ select {
     border-radius: 5px;
     color: #f1f1f1;
 }
-
-input[type=submit] {
+select{
     margin: auto;
     display: block;
     border: none;
     padding: 5px;
-    background-color: #f5ac4c;
+    background-color: #171717;
     border-radius: 5px;
+    color: #f1f1f1;
 }
