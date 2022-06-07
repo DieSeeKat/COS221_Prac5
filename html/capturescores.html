@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../css/capturescores.css">
     <link rel="stylesheet" href="../css/knightschess.css">
     <link rel="icon" href="../img/Knights%20Chess.png">
+    <script src="../js/capturesscores.js"></script>
+    <script src="../js/jQuery.js"></script>
 </head>
 <body>
     <div class="container">
@@ -28,7 +30,7 @@
 
 
     <div class="capture-results">
-        <form name="scoresFrm" action="../php/capturescores.php" method="POST">
+        <form name="scoresFrm">
 
             <h1>Capture Match Results: </h1> <br /><br />
 
@@ -71,7 +73,7 @@
             <input type="text" name="material_difference_end" id="mat-diff-end" required="required" placeholder=""/><br/><br />
             <label>Average material difference:</label><br />
             <input type="text" name="material_difference_avg" id="mat-diff-avg" required="required" placeholder=""/><br/><br />
-            <input type="submit" value=" Submit " name="submit"/><br />
+            <input type="button" value="Submit " name="submit" onclick="addMatch()"/><br />
         </form>
     </div>
 </div>

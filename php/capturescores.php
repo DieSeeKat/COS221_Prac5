@@ -1,7 +1,5 @@
 <?php
-
 include_once "config.php";
-if(isset($_POST["submit"])){
 
 
     $type = $_POST["type"];
@@ -21,13 +19,24 @@ if(isset($_POST["submit"])){
     $blackPlayerID = $_POST["ID_blackPlayer"];
 
 
-    $sql = "INSERT INTO chess_match(type, endMaterialDifference, avgMaterialDifference, time, increment, numMoves, victoryStatus, victoryReason, gameTime, whiteTimeLeft, blackTimeLeft, openingName, tournamentID, whitePlayerID, blackPlayerID)
-    VALUES ('$type','$endMaterialDifference','$avgMaterialDifference','$time','$increment','$numMoves','$victoryStatus','$victoryReason','$gameTime','$whiteTimeLeft','$blackTimeLeft','$openingName','$tournamentID','$whitePlayerID','$blackPlayerID')";
+    $sql = dbQuery("INSERT INTO chess_match(type, endMaterialDifference, avgMaterialDifference, time, increment, numMoves, victoryStatus, victoryReason, gameTime, whiteTimeLeft, blackTimeLeft, openingName, tournamentID, whitePlayerID, blackPlayerID)
+    VALUES ('$type','$endMaterialDifference','$avgMaterialDifference','$time','$increment','$numMoves','$victoryStatus','$victoryReason','$gameTime','$whiteTimeLeft','$blackTimeLeft','$openingName','$tournamentID','$whitePlayerID','$blackPlayerID')");
 
     if ($sql){
-        echo "<script type= ’text/javascript’>alert(’Match scores updated successfully’);</script>";
+        $returnMessage = [
+            "status" => "success",
+            "timestamp" => time(),
+            "data" => ["message" => "Match results successfully recorded."]
+        ];
+
+        echo json_encode($returnMessage);
     }
     else {
-        echo "<script type= ’text/javascript’>alert(’Error: " . $sql . "<br>" . "unable to connect’);</script>";
-    }
+        $returnMessage = [
+            "status" => "failed",
+            "timestamp" => time(),
+            "data" => ["message" => "ERROR: Problem while recording match results."]
+        ];
+
+        echo json_encode($returnMessage);
 }

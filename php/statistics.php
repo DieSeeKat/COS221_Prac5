@@ -26,28 +26,9 @@ function playersPerTournament():array
 function playersAbleToJoinTournament():array
 {
 
-    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating,"."
-     (SELECT id FROM chess_tournament
-         WHERE (cp.rating<= ratingUpperLimit)
-           AND (cp.rating>=ratingLowerLimit)
-     ) AS tournamentID,
-       (SELECT ratingUpperLimit FROM chess_tournament
-        WHERE (cp.rating<= ratingUpperLimit)
-          AND (cp.rating>=ratingLowerLimit)) AS UpperLimit,
-       (SELECT ratingLowerLimit FROM chess_tournament
-        WHERE (cp.rating<= ratingUpperLimit)
-          AND (cp.rating>=ratingLowerLimit)) AS LowerLimit
-FROM chess_player AS cp
-WHERE (rating <= ANY
-           (SELECT  ratingUpperLimit
-               FROM chess_tournament
-           )
-      ) AND ( rating >= ANY
-           (SELECT  ratingLowerLimit
-               FROM chess_tournament
-           )
-      )
-ORDER BY cp.rating DESC");
+    return dbQuery("SELECT title, firstname, lastname, rating, country, name, ratingUpperLimit, ratingLowerLimit
+                        FROM chess_player
+                        INNER JOIN chess_tournament ON chess_player.rating <= chess_tournament.ratingUpperLimit AND chess_player.rating >= chess_tournament.ratingLowerLimit");
 }
 
 
@@ -97,19 +78,17 @@ function openingUsedInMatch():array
 
 function MatchAnalysis():array
 {
-    return dbQuery("SELECT cm.id, cm.type, "."
-       (SELECT firstname
+    return dbQuery("SELECT cm.id, cm.type,
+    (SELECT firstname
         FROM chess_player AS cp
-        INNER JOIN chess_match AS cm
-        on cp.id = cm.whitePlayerID) AS whitePlayer,
-       (SELECT firstname
-        FROM chess_player AS cp
-        INNER JOIN chess_match AS cm
-        on cp.id = cm.blackPlayerID) AS blackPlayer, 
-       cm.victoryStatus, 
+        WHERE id = whitePlayerID) AS whitePlayer,
+    (SELECT firstname
+     FROM chess_player AS cp
+     WHERE id = blackPlayerID) AS blackPlayer,
+       cm.victoryStatus,
        cm.victoryReason,
        cm.gameTime
-        FROM chess_match AS cm");
+FROM chess_match AS cm");
 }
 
 

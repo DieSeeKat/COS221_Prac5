@@ -41,7 +41,7 @@ select {
     color: #f1f1f1;
 }
 
-input[type=submit] {
+input[type=button] {
     margin: auto;
     display: block;
     border: none;

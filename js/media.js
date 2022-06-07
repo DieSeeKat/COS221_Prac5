@@ -57,7 +57,6 @@ function media(){
     }).responseText;
 
     console.log(requestReturn);
-
 }
 
 function stringInArray(string, array){
