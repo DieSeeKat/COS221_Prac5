@@ -4,23 +4,23 @@ include_once "config.php";
 //QUERIES
 function playersRanked(): array
 {
-    return dbQuery("SELECT title, firstname, lastname, country, rating ".
-        "FROM chess_player ".
-        "ORDER BY rating DESC");
+    return dbQuery("SELECT title, firstname, lastname, country, rating "."
+        FROM chess_player 
+        ORDER BY rating DESC");
 }
 
 
 function playersAbleToJoinTournament():array
 {
-    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating, " .
-        "ct.id AS tournamentID " .
-        "FROM chess_player AS cp " .
-        "INNER JOIN chess_tournament_participation AS ctp " .
-        "ON cp.id=ctp.playerID " .
-        "INNER JOIN chess_tournament AS ct " .
-        "ON ctp.tournamentID=ct.id " .
-        "WHERE (cp.rating<ct.ratingUpperLimit) AND (cp.rating>ct.ratingLowerLimit) " .
-        "ORDER BY cp.lastname ASC");
+    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating, " . "
+        ct.id AS tournamentID 
+        FROM chess_player AS cp 
+        INNER JOIN chess_tournament_participation AS ctp 
+        ON cp.id=ctp.playerID 
+        INNER JOIN chess_tournament AS ct 
+        ON ctp.tournamentID=ct.id 
+        WHERE (cp.rating<ct.ratingUpperLimit) AND (cp.rating>ct.ratingLowerLimit) 
+        ORDER BY cp.lastname ASC");
 }
 
 
@@ -51,20 +51,20 @@ function matchesPerTournament():array
 
 function playerOpenings():array
 {
-    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating, openingName ".
-        "FROM chess_player AS cp " .
-        "LEFT JOIN chess_match cm " .
-        "ON cp.id = cm.blackPlayerID");
+    return dbQuery("SELECT cp.title, cp.firstname, cp.lastname, cp.country, cp.rating, openingName "."
+        FROM chess_player AS cp 
+        LEFT JOIN chess_match cm 
+        ON cp.id = cm.blackPlayerID");
 
 }
 
 
 function openingUsedInMatch():array
 {
-    return dbQuery("SELECT cm.id, co.openingName, co.openingMove ".
-        "FROM chess_match AS cm ".
-        "INNER JOIN chess_opening co ".
-        "ON cm.openingName = co.openingName");
+    return dbQuery("SELECT cm.id, co.openingName, co.openingMove "."
+        FROM chess_match AS cm 
+        INNER JOIN chess_opening co 
+        ON cm.openingName = co.openingName");
 }
 
 
@@ -130,28 +130,18 @@ function createTable($array, $title){
 }
 
 
+createTable(playersRanked(), "Players Ranked");
 
-$playersRanked = playersRanked();
-$playersAbleToJoinTournament = playersAbleToJoinTournament();
-$playerOpenings = playerOpenings();
-$openingUsedInMatch = openingUsedInMatch();
-$MatchAnalysis = MatchAnalysis();
-$mostCommonOpenings = mostCommonOpenings();
-$openings = openings();
+createTable(playersAbleToJoinTournament(), "Players able to join specific tournaments");
 
+createTable(playerOpenings(), "Which openings do players prefer");
 
-createTable($playersRanked, "Players Ranked");
+createTable(openingUsedInMatch(), "Which openings were used in which matches");
 
-createTable($playersAbleToJoinTournament, "Players able to join specific tournaments");
+createTable(mostCommonOpenings(), "Openings and how often they were used");
 
-createTable($playerOpenings, "Which openings do players prefer");
+createTable(MatchAnalysis(), "Deeper analysis of matches");
 
-createTable($openingUsedInMatch, "Which openings were used in which matches");
-
-createTable($mostCommonOpenings, "Openings and how often they were used");
-
-createTable($MatchAnalysis, "Deeper analysis of matches");
-
-createTable($openings, "Recorded Openings Table");
+createTable(openings(), "Recorded Openings Table");
 
 

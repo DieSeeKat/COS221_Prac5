@@ -7,36 +7,45 @@ h1 {
 }
 
 form {
+    margin: auto;
     text-align: center;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    display: block;
+    width: 45%;
+    background-color: black;
+    color: #f5ac4c;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 label {
     font-size: 120%;
 }
 
-input[type=text] {
-    width: 50%;
-    padding: 6px 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
+input[type=text]{
+    display: block;
+    width: 90%;
+    padding: 15px;
+    margin: 5px auto 22px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
 }
 
 select {
-    width: 50%;
-    padding: 6px 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
+    margin: auto;
+    display: block;
+    border: none;
+    padding: 5px;
+    background-color: #171717;
+    border-radius: 5px;
+    color: #f1f1f1;
 }
 
 input[type=submit] {
-    background-color: #000000;
+    margin: auto;
+    display: block;
     border: none;
-    color: white;
-    padding: 8px 32px;
-    text-decoration: none;
-    margin: 6px 3px;
-    cursor: pointer;
+    padding: 5px;
+    background-color: #f5ac4c;
+    border-radius: 5px;
 }
