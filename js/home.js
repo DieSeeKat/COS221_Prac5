@@ -70,7 +70,7 @@ function nameValidation(name){
         return false;
     }
     for (var i = 0; i < name.length; i++){
-        if (!(name[i].toUpperCase() in letters)){
+        if (!(letters.includes(name[i].toUpperCase()))){
             return false;
         }
     }

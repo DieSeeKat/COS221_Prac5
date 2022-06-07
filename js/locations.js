@@ -296,7 +296,13 @@ function list_sites(){
     });
 }
 
-getKeyID(session_key);
-list_locations();
-list_sites();
+if(!session_key == null){
+    getKeyID(session_key);
+    list_locations();
+    list_sites();
+}
+else{
+    alert("Please log in to continue");
+}
+
 // console.log(sites);
