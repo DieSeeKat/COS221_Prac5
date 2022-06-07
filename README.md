@@ -30,7 +30,7 @@ Add your own case under the main switch statement in knightschess.php to use ano
 ## **Hosting**
 
 Use any php server.
-  - XAMPP or WAMP (For Windows)
+  - [XAMPP](https://www.apachefriends.org/index.html) (Windows, Linux and OS X)
   - MAMP (For Mac OS)
 or LAMP stack on Linux.
 
