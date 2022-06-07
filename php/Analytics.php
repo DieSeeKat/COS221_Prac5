@@ -18,10 +18,10 @@
 
         <ul class="menu__box">
             <li><a class="menu__item" href="../html/home.html">Register Users</a></li>
-            <li><a class="menu__item" href="#">Manage Players</a></li>
+            <li><a class="menu__item" href="../html/players.html">Manage Players</a></li>
             <li><a class="menu__item" href="../html/locations.html">Manage Locations</a></li>
-            <li><a class="menu__item" href="#">Capture Match Results </a></li>
-            <li><a class="menu__item" href="#">Upload Media</a></li>
+            <li><a class="menu__item" href="../html/capturescores.html">Capture Match Results </a></li>
+            <li><a class="menu__item" href="../html/media.html">Upload Media</a></li>
             <li><a class="menu__item" href="Analytics.php">Analytics</a></li>
         </ul>
     </div>
